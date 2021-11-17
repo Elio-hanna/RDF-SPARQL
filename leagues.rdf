@@ -1,0 +1,15 @@
+<http://example.org/instances/0> <http://example.org/props/leagueId> "1" .
+<http://example.org/instances/0> <http://example.org/props/name> "Premier League" .
+<http://example.org/instances/0> <http://example.org/props/understatNotation> "EPL" .
+<http://example.org/instances/1> <http://example.org/props/leagueId> "2" .
+<http://example.org/instances/1> <http://example.org/props/name> "Serie A" .
+<http://example.org/instances/1> <http://example.org/props/understatNotation> "Serie_A" .
+<http://example.org/instances/2> <http://example.org/props/leagueId> "3" .
+<http://example.org/instances/2> <http://example.org/props/name> "Bundesliga" .
+<http://example.org/instances/2> <http://example.org/props/understatNotation> "Bundesliga" .
+<http://example.org/instances/3> <http://example.org/props/leagueId> "4" .
+<http://example.org/instances/3> <http://example.org/props/name> "La Liga" .
+<http://example.org/instances/3> <http://example.org/props/understatNotation> "La_liga" .
+<http://example.org/instances/4> <http://example.org/props/leagueId> "5" .
+<http://example.org/instances/4> <http://example.org/props/name> "Ligue 1" .
+<http://example.org/instances/4> <http://example.org/props/understatNotation> "Ligue_1" .

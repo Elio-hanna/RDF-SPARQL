@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns:ns1="http://example.org/props/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">  
+	<rdf:Description rdf:about="http://example.org/instances/4">    
+		<ns1:leagueId>5</ns1:leagueId>    
+		<ns1:understatNotation>Ligue_1</ns1:understatNotation>    
+		<ns1:name>Ligue 1</ns1:name>  
+	</rdf:Description>  
+	<rdf:Description rdf:about="http://example.org/instances/0">    
+		<ns1:name>Premier League</ns1:name>    
+		<ns1:leagueId>1</ns1:leagueId>    
+		<ns1:understatNotation>EPL</ns1:understatNotation>  
+	</rdf:Description>  
+	<rdf:Description rdf:about="http://example.org/instances/1">    
+		<ns1:leagueId>2</ns1:leagueId>    
+		<ns1:understatNotation>Serie_A</ns1:understatNotation>    
+		<ns1:name>Serie A</ns1:name>  
+	</rdf:Description>  
+	<rdf:Description rdf:about="http://example.org/instances/3">    
+		<ns1:name>La Liga</ns1:name>    
+		<ns1:leagueId>4</ns1:leagueId>    
+		<ns1:understatNotation>La_liga</ns1:understatNotation>  
+	</rdf:Description>  
+	<rdf:Description rdf:about="http://example.org/instances/2">    
+		<ns1:leagueId>3</ns1:leagueId>    
+		<ns1:name>Bundesliga</ns1:name>    
+		<ns1:understatNotation>Bundesliga</ns1:understatNotation>  
+	</rdf:Description>
+</rdf:RDF>
