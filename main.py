@@ -1,21 +1,24 @@
 from typing import Optional
 from fastapi import FastAPI, Query
 from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
-from fastapi.templating import Jinja2Templates
+from fastapi.responses import JSONResponse, HTMLResponse
+import codecs
+# from fastapi.templating import Jinja2Templates
 
 from rdflib import Graph, URIRef
 from rdflib.namespace import RDFS, SKOS
 
 app = FastAPI()
-templates = Jinja2Templates(directory="./")
+# templates = Jinja2Templates(directory="./")
 g = Graph()
 g.parse('leagues.xml', format='xml')
 
 
 @app.get("/")
 def form_post():
-    return templates.TemplateResponse('index.html')
+    f=codecs.open("index.html", 'r')
+    html_content = f.read()
+    return HTMLResponse(content=html_content, status_code=200)
 
 @app.get("/sparql/")
 async def read_items(q: Optional[str] = Query(None)):
