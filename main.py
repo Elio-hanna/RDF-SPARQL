@@ -3,6 +3,7 @@ from fastapi import FastAPI, Query
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse, HTMLResponse
 import codecs
+from fastapi.middleware.cors import CORSMiddleware
 # from fastapi.templating import Jinja2Templates
 
 from rdflib import Graph, URIRef
@@ -13,6 +14,15 @@ app = FastAPI()
 g = Graph()
 g.parse('leagues.xml', format='xml')
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 @app.get("/")
 def form_post():
@@ -20,10 +30,11 @@ def form_post():
     html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
 
-@app.get("/sparql/")
+@app.post("/sparql")
 async def read_items(q: Optional[str] = Query(None)):
     results = {}
     if q:
+        print(q)
         row = g.query(q)
         json_compatible_item_data = jsonable_encoder(list(row))
     return JSONResponse(content=json_compatible_item_data)
