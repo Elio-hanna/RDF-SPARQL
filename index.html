@@ -36,20 +36,25 @@
     <script type="text/javascript">
         $('#submit').on('click', function (e) {
             e.preventDefault()
-            console.log($('#query').val())
+            const query = $('#query').val().replace(/\n/g, ' ')
+            if (!query) {
+                alert('Please enter a query')
+                return
+            }
             $.ajaxSetup({
                 headers: {
                     "accept": "application/json",
-                    "Access-Control-Allow-Origin":"*"
+                    "Access-Control-Allow-Origin": "*"
                 }
             })
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 crossDomain: true,
-                url: `http://127.0.0.1:8000/sparql`,
-                data: {
-                    q: $('#query').val()
-                },
+                url: `http://127.0.0.1:8000/sparql/${encodeURIComponent(query)}`,
+                // data: {
+                //     // q: query.trim()
+                //     q: btoa(unescape(encodeURIComponent(query)))
+                // },
                 success: function (res) {
                     console.log(res)
                 },

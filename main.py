@@ -4,37 +4,40 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse, HTMLResponse
 import codecs
 from fastapi.middleware.cors import CORSMiddleware
-# from fastapi.templating import Jinja2Templates
+import urllib.parse
+import base64
 
 from rdflib import Graph, URIRef
 from rdflib.namespace import RDFS, SKOS
 
 app = FastAPI()
-# templates = Jinja2Templates(directory="./")
+# templates = Jinja2Templates(directory='./')
 g = Graph()
 g.parse('leagues.xml', format='xml')
 
-origins = ["*"]
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"]
+    allow_methods=['*'],
+    allow_headers=['*']
 )
 
-@app.get("/")
-def form_post():
-    f=codecs.open("index.html", 'r')
+@app.get('/')
+def index():
+    f=codecs.open('index.html', 'r')
     html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
 
-@app.post("/sparql")
-async def read_items(q: Optional[str] = Query(None)):
-    results = {}
+@app.get('/sparql/{q}')
+async def read_items(q):
     if q:
-        print(q)
+        q = urllib.parse.unquote(q)
+        q = q.strip(u'\u200b')
         row = g.query(q)
         json_compatible_item_data = jsonable_encoder(list(row))
-    return JSONResponse(content=json_compatible_item_data)
+        return JSONResponse(content=json_compatible_item_data)
+    else:
+        return ''
