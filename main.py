@@ -28,5 +28,4 @@ async def read_items(req: Request):
     req_json = await req.json()
     row = g.query(req_json.get('query'))
     json_compatible_item_data = jsonable_encoder(list(row))
-    print(json_compatible_item_data)
     return JSONResponse(content=json_compatible_item_data)
