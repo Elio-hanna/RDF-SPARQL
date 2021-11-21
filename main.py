@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from rdflib import Graph
+from scripts.querysplitting import QuerySplitting
 
 app = FastAPI()
 g = Graph()
@@ -30,5 +31,8 @@ def load_page():
 async def read_items(req: Request):
     req_json = await req.json()
     row = g.query(req_json.get('query'))
-    json_compatible_item_data = jsonable_encoder(list(row))
+    result_query = QuerySplitting.splitting(req_json.get('query'))
+    final_result = list(row)
+    final_result.insert(0,list(result_query))
+    json_compatible_item_data = jsonable_encoder(final_result)
     return JSONResponse(content=json_compatible_item_data)
