@@ -4,5 +4,5 @@ class QuerySplitting:
         result = set()
         for i in query:
             if (i.startswith("?")):
-                result.add(i)
+                result.add(i.replace("?",""))
         return result
