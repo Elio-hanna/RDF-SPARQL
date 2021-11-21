@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from rdflib import Graph
 
 app = FastAPI()
@@ -16,6 +17,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.mount("/scripts", StaticFiles(directory="scripts"), name="scripts")
 
 @app.get("/")
 def load_page():

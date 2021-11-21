@@ -20,8 +20,7 @@
                 <button type='submit' id='submit' class='btn btn-primary mt-2'>Submit</button>
             </div>
         </form>
-        <div class='row'>
-            <!-- results -->
+        <div class='row mx-auto' id="results">
         </div>
     </div>
 
@@ -33,33 +32,7 @@
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
         integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
         crossorigin='anonymous'></script>
-    <script type='text/javascript'>
-        $('#submit').on('click', function (e) {
-            e.preventDefault()
-            const query = $('#query').val().replace(/\n/g, ' ').trim()
-            if (!query) {
-                alert('Please enter a query')
-                return
-            }
-            $.ajaxSetup({
-                headers: {
-                    'accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                }
-            })
-            $.ajax({
-                type: 'POST',
-                url: 'http://127.0.0.1:8000/sparql/',
-                data: JSON.stringify({ query }),
-                success: function (res) {
-                    console.log(res)
-                },
-                error: function (error) {
-                    console.error(error)
-                }
-            })
-        })
-    </script>
+    <script src="scripts/query.js"></script>
 </body>
 
 </html>
