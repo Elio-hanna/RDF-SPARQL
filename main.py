@@ -22,12 +22,18 @@ app.add_middleware(
 app.mount("/scripts", StaticFiles(directory="scripts"), name="scripts")
 
 @app.get("/")
-def load_page():
+def load_main_page():
     f=codecs.open("index.html", 'r')
     html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
 
-@app.post('/sparql/')
+@app.get("/extra-feature")
+def load_extra_feature():
+    f=codecs.open("extra-feature.html", 'r')
+    html_content = f.read()
+    return HTMLResponse(content=html_content, status_code=200)
+
+@app.post('/sparql')
 async def read_items(req: Request):
     req_json = await req.json()
     row = g.query(req_json.get('query'))
@@ -37,7 +43,7 @@ async def read_items(req: Request):
     json_compatible_item_data = jsonable_encoder(final_result)
     return JSONResponse(content=json_compatible_item_data)
 
-@app.get('/subjects')
+@app.get('/subject')
 def get_subjects():
     subjects = list(g.subjects())
     result = set()
