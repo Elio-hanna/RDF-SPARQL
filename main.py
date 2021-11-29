@@ -36,3 +36,30 @@ async def read_items(req: Request):
     final_result.insert(0,list(result_query))
     json_compatible_item_data = jsonable_encoder(final_result)
     return JSONResponse(content=json_compatible_item_data)
+
+@app.get('/subjects')
+def get_subjects():
+    subjects = list(g.subjects())
+    result = set()
+    for x in subjects:
+        result.add(x)
+    json_compatible_item_data = jsonable_encoder(result)
+    return JSONResponse(content=json_compatible_item_data)
+
+@app.get('/predicate')
+def get_subjects():
+    predicate = list(g.predicates())
+    result = set()
+    for x in predicate:
+        result.add(x)
+    json_compatible_item_data = jsonable_encoder(result)
+    return JSONResponse(content=json_compatible_item_data)
+
+@app.get('/object')
+def get_subjects():
+    objects = list(g.objects())
+    result = set()
+    for x in objects:
+        result.add(x)
+    json_compatible_item_data = jsonable_encoder(result)
+    return JSONResponse(content=json_compatible_item_data)
