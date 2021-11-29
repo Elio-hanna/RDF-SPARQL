@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from rdflib import Graph
 from scripts.querysplitting import QuerySplitting
+from scripts.query import Query
 
 app = FastAPI()
 g = Graph()
@@ -50,6 +51,7 @@ def get_subjects():
     for x in subjects:
         result.add(x)
     json_compatible_item_data = jsonable_encoder(result)
+    print(json_compatible_item_data)
     return JSONResponse(content=json_compatible_item_data)
 
 @app.get('/predicate')
@@ -68,4 +70,26 @@ def get_subjects():
     for x in objects:
         result.add(x)
     json_compatible_item_data = jsonable_encoder(result)
+    return JSONResponse(content=json_compatible_item_data)
+
+@app.post('/query')
+async def query(req: Request):
+    req_json = await req.json()
+    print(req_json)
+    if (req_json['subject'] != ''):
+        sub = "<"+req_json['subject']+">"
+    else:
+        sub = None
+    if (req_json['predicate'] != ''):
+        pred = "<"+req_json['predicate']+">"
+    else:
+        pred = None
+    if (req_json['object'] != ''):
+        # obj = "<"+ req_json['object']+">"
+        obj = req_json['object']
+    else:
+        obj = None
+
+    final_result = Query.query(g,sub,pred,obj)
+    json_compatible_item_data = jsonable_encoder(final_result)
     return JSONResponse(content=json_compatible_item_data)
