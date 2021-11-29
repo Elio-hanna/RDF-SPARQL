@@ -36,8 +36,8 @@
             predicate: $('#predicate').val(),
             object: $('#object').val(),
         }
-        const isNull = Object.entries(data).every(v => v == '')
-        const allThree = Object.entries(data).every(v => v != '')
+        const isNull = Object.entries(data).every(([key, value]) => value === '')
+        const allThree = Object.entries(data).every(([key, value]) => value !== '')
         if (isNull) {
             alert('Please enter a query')
             return
