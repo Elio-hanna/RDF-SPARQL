@@ -36,11 +36,12 @@
             predicate: $('#predicate').val(),
             object: $('#object').val(),
         }
-        const length = Object.entries(data).length
-        if (!length) {
+        const isNull = Object.entries(data).every(v => v == '')
+        const allThree = Object.entries(data).every(v => v != '')
+        if (isNull) {
             alert('Please enter a query')
             return
-        } else if (length === 3) {
+        } else if (allThree) {
             alert('You can only choose 2 options')
             return
         }
