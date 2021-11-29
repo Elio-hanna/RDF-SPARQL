@@ -8,9 +8,29 @@
     <title>RDF - Projet</title>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
         integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Extra Feature <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class='container'>
         <form class='row'>
             <div class='form-group col-12 col-sm-6 mx-auto'>
@@ -23,7 +43,17 @@
         <div class='row mx-auto' id="results">
         </div>
     </div>
-
+    <footer class="border-top my-4 py-4">
+        <div class="footer__links text-center">
+            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a><span class="mx-1">|</span><a
+                href="https://twitter.com/"><i class="fa fa-twitter"></i></a><span class="mx-1">|</span><a
+                href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a><span class="mx-1">|</span><a
+                href="mailto:"><i class="fa fa-envelope"></i></a>
+        </div>
+        <div class="footer__copyright text-center mt-2">
+            <span>Copyright &copy; 2021</span><span class="mx-1">|</span><a>Marc & Elio</a>
+        </div>
+    </footer>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'
         integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
