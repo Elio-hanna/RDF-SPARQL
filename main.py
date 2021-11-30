@@ -10,7 +10,7 @@ from scripts.query import Query
 
 app = FastAPI()
 g = Graph()
-g.parse('data/leagues.xml', format='xml')
+g.parse('data/car-beuty.xml', format='xml')
 
 app.add_middleware(
     CORSMiddleware,
@@ -51,7 +51,6 @@ def get_subjects():
     for x in subjects:
         result.add(x)
     json_compatible_item_data = jsonable_encoder(result)
-    print(json_compatible_item_data)
     return JSONResponse(content=json_compatible_item_data)
 
 @app.get('/predicate')
