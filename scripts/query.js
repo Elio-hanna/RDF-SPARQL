@@ -23,8 +23,7 @@
     }
     const getSubjects = ajaxPromise('/subject')
     const getPredicates = ajaxPromise('/predicate')
-    const getObjects = ajaxPromise('/object')
-    const [subjects, predicates, objects] = await Promise.all([getSubjects, getPredicates, getObjects])
+    const [subjects, predicates] = await Promise.all([getSubjects, getPredicates])
 
     appendSelect = (divId, data) => {
         $(`#${divId}`).append(`
@@ -34,22 +33,16 @@
 
     subjects.forEach(data => appendSelect('subject', data))
     predicates.forEach(data => appendSelect('predicate', data))
-    objects.forEach(data => appendSelect('object', data))
 
     $('#submit').on('click', function (e) {
         e.preventDefault()
         let data = {
             subject: $('#subject').val(),
             predicate: $('#predicate').val(),
-            object: $('#object').val(),
         }
-        const isNull = Object.entries(data).every(([key, value]) => value === '')
-        const allThree = Object.entries(data).every(([key, value]) => value !== '')
+        const isNull = Object.entries(data).some(([key, value]) => value === '')
         if (isNull) {
-            alert('Please enter a query')
-            return
-        } else if (allThree) {
-            alert('You can only choose 2 options')
+            alert('Please fill both select boxes')
             return
         }
         $.ajax({

@@ -62,15 +62,6 @@ def get_subjects():
     json_compatible_item_data = jsonable_encoder(result)
     return JSONResponse(content=json_compatible_item_data)
 
-@app.get('/object')
-def get_subjects():
-    objects = list(g.objects())
-    result = set()
-    for x in objects:
-        result.add(x)
-    json_compatible_item_data = jsonable_encoder(result)
-    return JSONResponse(content=json_compatible_item_data)
-
 @app.post('/query')
 async def query(req: Request):
     req_json = await req.json()
@@ -83,12 +74,7 @@ async def query(req: Request):
         pred = "<"+req_json['predicate']+">"
     else:
         pred = None
-    if (req_json['object'] != ''):
-        # obj = "<"+ req_json['object']+">"
-        obj = req_json['object']
-    else:
-        obj = None
 
-    final_result = Query.query(g,sub,pred,obj)
+    final_result = Query.query(g,sub,pred, None)
     json_compatible_item_data = jsonable_encoder(final_result)
     return JSONResponse(content=json_compatible_item_data)
