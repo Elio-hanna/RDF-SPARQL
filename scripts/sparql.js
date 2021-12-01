@@ -2,7 +2,10 @@
     const $results = $('#results')
     $('#submit').on('click', function (e) {
         e.preventDefault()
-        const query = $('#query').val().replace(/\n/g, ' ').trim()
+        let query = $('#query').val().replace(/\n/g, ' ').trim()
+        if (!query.includes('LIMIT') || !query.includes('limit')) {
+            query += ' LIMIT 100'
+        }
         if (!query) {
             alert('Please enter a query')
             return

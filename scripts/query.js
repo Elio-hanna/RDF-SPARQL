@@ -1,5 +1,12 @@
 (async function ($) {
     const $results = $('#results')
+
+    $('#subject, #predicate').select2({
+        width: '100%',
+        language: "fr",
+        minimumInputLength: 2
+    })
+
     const ajaxPromise = (url) => {
         return new Promise((resolve, reject) => {
             $.ajax({

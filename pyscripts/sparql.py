@@ -2,7 +2,7 @@ from rdflib import Graph, URIRef
 from rdflib.namespace import RDFS, SKOS
 
 g = Graph()
-g.parse('leagues.xml', format='xml')
+g.parse('../data/leagues.xml', format='xml')
 
 qres = g.query('''
     SELECT ?pred ?label
